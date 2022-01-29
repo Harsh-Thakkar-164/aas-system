@@ -1,0 +1,33 @@
+{% extends 'dashboard-master.html' %}
+
+{% block body_heading %}
+{% load webpush_notifications %}
+    Accident Alerts
+    {% if request.path == '/super_admin/alerts/' or request.path == '/ecc/alerts/' or request.path == '/customer/alerts/' %}
+    <div class="banner">
+        {% webpush_button with_class="btn btn-info" %}
+    </div> 
+    {% endif %} 
+{% endblock %}
+
+{% block body %}
+    {% load static %}
+    {% with request.get_full_path|slice:"1:4" as path %}
+
+        {% for alert in alerts %}
+        <div class="container-fluid text-left p-3 background alert bg-custom-danger col-lg-8">
+            <div class="text-white">{{alert.time}}</div>
+            <hr>
+            <a href="{% if path == 'sup' %}/super_admin/alert/{%elif path == 'ecc'%}/ecc/alert/{%elif path == 'cus'%}/customer/alert/{%endif%}?id={{alert.rid}}" >
+                <div class="h5 text-white">Accident detected at <span class="text-dark">{{alert.area}},
+                    {{alert.city}}</span><br>Assigned to <span class="text-dark">{{alert.eid}}</span>
+                </div>
+            </a>
+            <hr>
+            <a class="text-white" href="https://www.google.com/maps/search/?api=1&query={{alert.latitude}},{{alert.longitude}}" target="_blank">Check Location</a>
+        </div>
+        {% endfor %}
+
+    {% endwith %}  
+</div>
+{% endblock %}

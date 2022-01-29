@@ -1,0 +1,110 @@
+{% extends 'dashboard-master.html' %}
+
+{% block body_heading %}
+    Alert Profile 
+{% endblock %}
+
+{% block body %}
+    {% load static %}
+    {% comment %} {%if request.path == '/Alerts/' or request.path == '/Admin-Alerts/' or request.path == '/Ecc-Alerts/'%} {% endcomment %}
+    <main class="">
+      <div class="">
+        <div class ="container d-flex justify-content-around">
+            <div class ="row col-12 mb-5">
+            <!-- Patient Information -->
+            <div class="col-lg-6 col-12 p-0 mb-3">
+              <div class="card bg-transparent mx-2">
+                <div class="card-footer col-12 rounded-top form-inline pt-3 px-0" style="background-color:#F74D6A">
+                  <div class="col-12 text-white h5 text-center">
+                    <i class="fa fa-medkit pr-2" aria-hidden="true"></i>Patient Details
+                  </div>
+                </div>
+                <div class="card-body border rounded-bottom px-0 py-2 form-inline text-dark">
+                  {% for data in customer %}
+                    <div class="text-left p-2">
+                            <div class="pb-2 p-0 col-12 form-inline">
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Name</div>
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Blood</div>
+                              <span type="text" class="col-xl-6 col-sm-6 col-6  font-weight-light" disabled="disabled">{{data.firstName}} {{data.lastName}}</span>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.bloodGroup}}</div>
+                            </div>
+                            <div class="pb-2 p-0 col-12 form-inline">
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Gender</div>
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Age</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.gender}}</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.birthDate}}</div>
+                            </div>
+                            <div class="pb-2 p-0 col-12 form-inline">
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Contact</div>
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Email</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.contact}}</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.uid}}</div>
+                            </div>
+                            <div class="pb-2 p-0 col-12 form-inline">
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Area Code</div>
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">City</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.pincode}}</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.city}}</div>
+                            </div>
+                            <div class="pb-2 p-0 col-12 form-inline">
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Vehicle Number</div>
+                              <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Vehicle Model</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.vehicleNumber}}</div>
+                              <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.vehicleModel}}</div>
+                            </div>
+                    </div>
+                  {%endfor%}
+                </div>
+              </div>
+            </div>
+            <!-- Accident Information  -->
+            <div class="col-lg-6 col-12 p-0">
+              <div class="card bg-transparent mx-2">
+                <div class="card-footer col-12 rounded-top form-inline pt-3 px-0" style="background-color:#F74D6A">
+                  <div class="col-12 text-white h5 text-center">
+                    <i class="fa fa-medkit pr-2" aria-hidden="true"></i>Accident Details
+                  </div>
+                </div>
+                <div class="card-body border rounded-bottom px-0 py-2 form-inline text-dark">
+                  {% for data in accident %}
+                    <div class="text-left p-2">
+                            <div class="pb-2 p-0 col-12 form-inline">
+                                  <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Accident Time</div>
+                                  <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Reply Time</div>
+                                  <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.time}}</div>
+                                  <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.replyStatus}}</div>
+                                </div>
+                                <div class="pb-2 p-0 col-12 form-inline">
+                                  <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Area</div>
+                                  <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">City</div>
+                                  <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.area}}</div>
+                                  <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.city}}</div>
+                                </div>
+                                <div class="pb-2 p-0 col-12 form-inline pb-4">
+                                  <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Latitude</div>
+                                  <div class="col-xl-6 col-sm-6 col-6 h5 pr-0">Longitude</div>
+                                  <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.latitude}}</div>
+                                  <div class="col-xl-6 col-sm-6 col-6  font-weight-light">{{data.longitude}}</div>
+                                </div>
+                                <div class="pb-2 p-0 col-12 form-inline pb-4">
+                                  {%if request.path == '/super_admin/alert/' %}
+                                  <div class="col-xl-6 col-sm-6 col-6 font-weight-bold">Assigned ECC</div>
+                                  {%endif%}
+                                    <div class="{%if request.path != '/ecc/alert/' %}col-xl-6 col-sm-6 col-6 h5 pr-0 {%else%}col-xl-12 col-sm-12 col-12 h5 pr-0{%endif%}">Location</div>
+                                    {%if request.path != '/ecc/alert/' %}
+                                      {%for data in ecc%}
+                                      <div class="col-xl-6 col-sm-6 col-6  font-weight-light"><a href="{%if request.path == '/super_admin/alert/'%}/super_admin/ecc/{% elif request.path == "/customer/alert/"%}/customer/ecc/{% endif %}?id={{data.eid}}" class="text-danger">{{data.name}}</a></div>
+                                      {%endfor%}
+                                      {%endif%}
+                                      <div class="{%if request.path != '/ecc/alert/' %}col-xl-6 col-sm-6 col-6 font-weight-bold {%else%}col-xl-12 col-sm-12 col-12 font-weight-bold {%endif%} font-weight-light"><a href="https://www.google.com/maps/search/?api=1&query={{data.latitude}},{{data.longitude}}" target="_blank" class="text-danger">Open Location Root</a></div>
+                                    </div>
+                                  </div>
+                                </div>
+                    </div>
+                  {% endfor %}                                     
+                </div>
+            </div>
+                </div>
+            </div>      
+    </main>  
+{% endblock %}

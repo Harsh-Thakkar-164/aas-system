@@ -1,0 +1,384 @@
+{% extends 'home-master.html' %}
+
+{% block body %}
+    {% load static %}
+  
+    {% if request.path == '/' or request.path == '/products/'%}
+      <!-- Header -->
+      <header id="header-section">
+        <nav class="navbar navbar-expand-lg p-3" id="navbar">
+        <div class="container rounded border border-dark">
+        <div class="navbar-brand-wrapper w-100 container-header-main">
+            <div class="vertical-align d-flex justify-content-between">
+              <div class="d-flex justify-content-center align-items-between px-2">
+                <img src="{%static 'images/logo/aas-logo.png'%}" alt="" width="70px" class="img-fluid pl-3">
+                <span class="w-60 h5 d-flex align-items-center pt-1" style="color: #3D3B40;">Accident <span style="color: #F74D6A;margin:0px 5px">Alert</span> Securities</span>
+              </div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="mdi mdi-menu navbar-toggler-icon mr-auto"></span>
+              </button> 
+            </div>
+        </div>
+        <div class="collapse navbar-collapse navbar-menu-wrapper" id="navbarSupportedContent">
+            <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
+            <li class="d-flex align-items-center justify-content-between ">
+                <div class="navbar-collapse-logo col-10">
+                  {% comment %} <img src="{%static 'images/logo/aas-logo.png'%}" alt="" width="60px" class="img-fluid"> {% endcomment %}
+                  <span class="w-60 pl-1 text-dark h4 header-main-text">A <span class="text-danger">A</span> S</span>
+                </div>
+                <button class="navbar-toggler close-button col-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {%if request.path != "/products/" %}
+            <li class="nav-item">
+                <a class="nav-link" href="#about_us">About</a>  
+            </li>
+            {%endif%}
+            <li class="nav-item">
+              <a class="nav-link" href="#contact_us">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products/">Products</a>  
+            </li>
+                {% if lguser == none  and request.path != '/products/'%}
+                  <li class="nav-item btn-contact-us pl-4 pl-lg-0">
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">Sign In</button>
+                    {% elif lguser ==  "customer" %}
+                    <a class="btn btn-danger" href="/super_admin/alerts/">Dashboard</a>
+                    {% elif lguser ==  "super" %}
+                    <a class="btn btn-danger" href="/ecc/alerts/">Dashboard</a>
+                    {% elif lguser ==  "ecc" %}
+                    <a class="btn btn-danger" href="/customer/alerts/">Dashboard</a>
+                  </li>
+                {% endif%}
+            </ul>
+        </div>
+        </div> 
+        </nav>   
+      </header>
+
+      {% if request.path == '/'%}
+        <div class="banner">
+          <!-- Hero -->
+            <div class="container-fluid container-banner col-10" id="home">
+              <img src="{%static 'images/backgrounds/home1.jpg'%}" alt="" class="img-fluid rounded">
+              <div class="banner-text rounded col-md-4 col-sm-6 col-10">
+                <h4 class="font-weight-semibold text-custom-danger">A Life Saviour System</h1>
+                <h7 class="font-weight-normal pb-1 text-white">The fastest help during vehicle accidents</h6><br/><br/>
+                  <a class="btn btn-dark mr-1" href="/products/">Explore System</a>
+              </div>
+            </div>
+            <br/>
+          <!-- Other Help -->
+          
+            <div class="container-fluid container-banner col-10"  id="helps-section">
+              <img src="{%static 'images/backgrounds/medical-emergency.jpg'%}" alt="" class="img-fluid rounded">
+              <div class="banner-text rounded col-md-4 col-sm-6 col-10">
+                <h4 class="font-weight-semibold text-custom-danger">AAS in Medical Emergencies</h1>
+                <h7 class="font-weight-normal pb-1 text-white">Emergency medical service from Device</h6><br/><br/>
+                  <a class="btn btn-dark ml-1" href="/products/">Learn more</a>
+              </div>
+            </div>
+            <br/>
+          <!-- Mission -->
+            <div class="container-fluid container-banner col-10" id="about_us">
+              <img src="{%static 'images/backgrounds/home2.jpg'%}" alt="" class="img-fluid rounded">
+              <div class="banner-text rounded col-md-4 col-sm-6 col-10">
+                <h4 class="font-weight-semibold text-custom-danger">AAS Mission</h1>
+                <h7 class="font-weight-normal text-white">Our mission is to save lives from vehicle accidents.</h6>
+                <!-- <div class="banner-btn">
+                  <a class="btn btn-dark ml-1" href="/About/">Know More</a>
+                </div> -->
+                </div>
+            </div>
+          </div>
+        {% elif request.path == '/products/' %}
+          <div class="banner" id="Device" >
+
+            <!-- Device Header -->
+            <div class="container">
+              <h1 class="text-custom-danger font-weight-semibold">AAS Device</h1>
+              <h6 class="font-weight-normal text-muted">A Security Based Automated Device</h6>
+              <h6 class="font-weight-normal text-muted"><hr style="width: 50%;"></h6>
+            </div>
+        
+            <!-- Device Hero -->
+            <div class="mb-5">
+              <div class="container container-banner">
+                <img src="{%static 'images/products/AAS-device.jpg'%}" alt="" class="img-fluid rounded">
+              </div>
+            </div>
+            
+            <!-- Device Details -->
+            <div class="text-center">
+              <div class="container pb-4">
+                  <h3 class="font-weight-normal text-custom-danger py-3">Product Details</h4>
+                  <div class="contact-details">
+                    <div class="row text-center text-md-left">
+                      <div class="col-12 col-md-6 col-lg-4 grid-margin">
+                        <h5 class="main-heading text-dark">Components Inside</h5>
+                        <div class="pt-2">
+                          <p class="text-muted m-0"><strong>GPS</strong>: Finds Vehicle Location</p>
+                          <p class="text-muted m-0 py-1"><strong>GSM</strong>: Give Internet Access</p>
+                          <p class="text-muted m-0 py-1"><strong>Microcontroller</strong>: Process the Data</p>
+                        </div>         
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-4 grid-margin border-left border-right border-dark">
+                        <h5 class="pb-2">Device Discription</h5>
+                        <p class="text-muted m-0"><strong>Manual Button</strong>: For send Manual Alerts</p>
+                        <p class="text-muted m-0 py-1"><strong>Leds</strong>: For Indicate the Process</p>
+                        <p class="text-muted m-0 py-1"><strong>Inputs</strong>: For power and connect with vehicle components</p>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-4 grid-margin">
+                        <h5 class="pb-2">Price</h5>
+                        <p class="text-muted">INR 5000 (all charges included)</p>
+                        <p class = "text-danger">{{screentext}}</p>
+                        <div class="d-flex justify-content-center justify-content-md-start">
+                          <a href="{% if buttontext == 'Buy Now' or buttontext == 'Grab Now' %} /products/registration_phase1/ {%elif buttontext == 'Pre-Order'%} /products/pre_order/ {%endif%}"><button class="btn btn-success">{{buttontext}}</button></a>
+                        </div>
+                      </div>
+                      <div class="col-12 text-muted">
+                          <strong>Note 1</strong>: If you buy AAS Device you need to confirm your Device model number at <a href="/products/confirm_product/" class="text-info">This Page</a> to Get access.
+                      </div>  
+                      <div class="col-12 text-muted my-2">
+                        <strong>Note 2</strong>: Device will fit on your vehicle at delivery time and Device fitting charges are included in the Product Price.
+                      </div>  
+                      <div class="col-12 text-muted">
+                        <strong>Note 3</strong>: A Proper Documentation of the Product is given with the Product.
+                      </div>  
+                    </div>  
+                  </div>
+              </div>
+            </div>
+        
+          </div>
+          <div class="content-wrapper">
+            <div class="container">
+              <!-- Device Work -->
+              <section class="features-overview">
+                    <div class="content-header p-0 mb-5">
+                      <h2 class="text-custom-danger">How does it works?</h2>
+                      <h6 class="section-subtitle text-muted m-0">How can AAS Device Save Lives?</h6>
+                    </div>
+                    <div class="d-md-flex justify-content-between">
+                      <div class="grid-margin d-flex justify-content-start">
+                        <div class="features-width">
+                          <img src="{%static 'images/svg/crash.svg'%}" alt="" class="img-icons">
+                          <h5 class="py-3">Accident<br>Detection</h5>
+                          <p class="text-muted">System detects vehicle accident <strong>Automatically</strong> with the help of vehicle's airbag system.</p>
+                        </div>
+                      </div>
+                      <div class="grid-margin d-flex justify-content-center">
+                        <div class="features-width">
+                          <img src="{%static 'images/svg/alert.svg'%}" alt="" class="img-icons">
+                          <h5 class="py-3">Give <br>Alert</h5>
+                          <p class="text-muted">After vehicle Accident detection, system gives an accident alert to vehicle and waits 15 sec for response on safely.</p>
+                        </div>
+                      </div>
+                      <div class="grid-margin d-flex justify-content-center">
+                        <div class="features-width">
+                          <img src="{%static 'images/svg/response.svg'%}" alt="" class="img-icons">
+                          <h5 class="py-3">Check <br>Response</h5>
+                          <p class="text-muted">If you feel secure after accident alert, you can avoid system emergency service by deny Accident alert.</p>
+                        </div>
+                      </div>
+                      <div class="grid-margin d-flex justify-content-end">
+                        <div class="features-width">
+                          <img src="{%static 'images/svg/message.svg'%}" alt="" class="img-icons">
+                          <h5 class="py-3">Send<br>Accident ALert</h5>
+                          <p class="text-muted">After 15 sec of wait, if alert response is dany then system stops otherwise it sends Accident alert calls the nearest emergency services.</p>
+                        </div>
+                      </div>
+                    </div>
+              </section> 
+                  
+            </div>
+          </div>                  
+        {% endif %}
+
+      <!-- Footer -->
+      <div class="border-top" id="contact_us">
+        <div class="container">
+            <h1 class="font-weight-normal text-custom-danger py-3 text-center">Contact Details</h1>
+            <div class="contact-details">
+              <div class="row text-center text-md-center">
+                <div class="col-12 col-md-6 col-lg-6 grid-margin">
+                  <h4 class="main-heading text-dark">Accident Alert Securities</h4>
+                  <div class="pt-2">
+                    <p class="text-muted m-0"><a href="mailto:accidentsecurities@gmail.com" target="_blank">accidentalertsecurities@gmail.com</a></p>
+                    <p class="text-muted m-0 py-1">+91-8200919052</p>
+                  </div>         
+                </div>
+                <div class="col-12 col-md-6 col-lg-6 grid-margin border-left border-dark">
+                  <form method="post">{% csrf_token %}
+                    <input type="text" name="subemail" class="form-control" id="Email" placeholder="Email id">
+                  <div class="pt-3">
+                      <button class="btn btn-dark">Subscribe for Updates</button>
+                    </div>
+                  </form>
+                </div>
+                {% comment %} <div class="col-12 col-md-6 col-lg-4 grid-margin">
+                  <h5 class="pb-2">Address</h5>
+                  <p class="text-muted">Ahmedabad, Gujrat</p>
+                  <p class="text-muted pb-1">India</p>
+                  <div class="d-flex justify-content-center justify-content-md-start mt-3">
+                    <a href="#"><span class="mdi mdi-facebook"></span></a>
+                    <a href="#"><span class="mdi mdi-twitter"></span></a>
+                    <a href="#"><span class="mdi mdi-instagram"></span></a>
+                    <a href="#"><span class="mdi mdi-linkedin"></span></a>
+                  </div>
+                </div> {% endcomment %}
+              </div>  
+            </div>
+        </div>
+      </div>
+
+    {% elif request.path == '/products/confirm_product/' or request.path == '/products/registration_phase1/' or request.path == '/products/registration_phase2/' or request.path == '/products/buy_product/' or request.path == '/products/pre_order/'%}
+      <div class="content-wrapper">
+        <div class="container"> 
+          <section class="digital-marketing-service">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 col-lg-6 flex-item grid-margin border">
+                    <div class="mt-3 text-center">
+                      <img src="{%static 'images/logo/aas-logo.png'%}" alt="" width="50px" class="img-fluid">                        
+                    </div>
+                    <form method="post" class="px-5">{% csrf_token %}
+                      <div>
+                        {% if request.path == '/products/confirm_product/'%}
+                          <div class="mb-3 text-center">
+                            <span class="w-60 h3" style="color: #3D3B40;">Confirm  Product</span>
+                              <hr>
+                          </div>
+                          <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail4">Email</label>
+                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                                </div>
+                                <div class="form-group col-md-12">
+                                  <label for="inputAddress">Device Model Number</label>
+                                  <input type="text" name="deviceId" class="form-control" id="inputDevModNum" placeholder="Device Model Number" required style="text-transform: uppercase;">
+                                </div>
+                                <div class="form-group col-md-12">
+                                  <label for="inputAddress">Create Password</label>
+                                  <input type="password" name="password" class="form-control" id="inputDevModNum" placeholder="Password" required>
+                                </div>
+                          </div>
+                          <button type="submit" class="btn btn-success my-3">Confirm</button>
+
+                          {%elif request.path == '/products/registration_phase1/'%}
+                                <div class="mb-3 text-center">
+                                  <span class="w-60 h3" style="color: #3D3B40;">Product Registration</span>
+                                    <hr>
+                                </div>
+                                <form method="post">{% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="inputEmail4">Email</label>
+                                      <input type="email" name="emailPassed" class="form-control" id="inputEmail" placeholder="Email" required />
+                                    </div>        
+                                    <div class="form-group">
+                                      <label for="inputPassword4">Vehicle Number</label>
+                                      <input type="text" minlength="10" maxlength="10" name="vahicalNPassed" class="form-control" id="vehicleNumber" placeholder="Vehicle Number" required style="text-transform: uppercase;"/>
+                                    </div>                    
+                                    <div class="form-group">
+                                      <label for="inputEmail4">Vehicle Model</label>
+                                      <input type="text" name="vahicalMPassed" class="form-control" id="vehicleModel" placeholder="Vehicle Model" required />
+                                    </div>                
+                                    <button type="submit" class="btn btn-success mt-3 mb-5" id="checkout">Next</button>
+                                  </form>
+                                  
+
+                          {%elif request.path == '/products/pre_order/'%}
+                              <div class="mb-3 text-center">
+                                <span class="w-60 h3" style="color: #3D3B40;">Pre-Order Registration</span>
+                                  <hr>
+                              </div>
+                              <form method=" post">{% csrf_token %}
+                                  <div class="form-group col-md-12">
+                                    <label for="inputEmail4">First Name</label>
+                                    <input type="text" name="fname" class="form-control" id="inputname" placeholder="First Name" onkeyup="this.value = this.value.toLowerCase();" required />
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                    <label for="inputPassword4">Last Name</label>
+                                    <input type="text" name="lname" class="form-control" id="inputname" placeholder="Last Name" onkeyup="this.value = this.value.toLowerCase();" required />
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                    <label for="inputPassword4">email</label>
+                                     <input type="email" name="email" class="form-control" id="inputname" placeholder="Email" onkeyup="this.value = this.value.toLowerCase();" required />
+                                  </div>
+                                  <button type="submit" class="btn btn-success  mt-3 mb-5" id="checkout">Submit</button>
+                                </form>
+                          </div>
+
+                          {% elif request.path == '/products/registration_phase2/' %}
+                            <div class="mb-3 text-center">
+                              <span class="w-60 h3" style="color: #3D3B40;">Product Registration</span>
+                                <hr>
+                            </div>
+                            <div class="p-0 m-0">
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="inputEmail4">First Name</label>
+                                  <input type="text" name="fname" class="form-control" id="inputname" placeholder="First Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="inputPassword4">Last Name</label>
+                                  <input type="text" name="lname" class="form-control" id="inputname" placeholder="Last Name">
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="inputEmail4">Birth Date</label>
+                                  <input type="date" name="birthdate" class="form-control" id="inputAge" placeholder="Birthdate">
+                                </div>
+                                <div class="form-group col-md-4">
+                                      <label for="inputEmail4">Gender</label>
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="gender">
+                                      <option>Male</option>
+                                      <option>Female</option>
+                                    </select>                 
+                                </div>
+                                <div class="form-group col-md-2">
+                                  <label for="inputAddress">Blood</label>
+                                  <input type="text" minlength="2" maxlength="3"name="BG" class="form-control" id="inputBG">
+                                </div>
+                              </div>
+                                <div class="form-group">
+                                  <label for="inputAddress">Contact</label>
+                                  <input type="text" pattern="[6-9]{1}[0-9]{9}" minlength="10" maxlength="10" name="mob" class="form-control" id="Cont" placeholder="Contact Number" required title="Phone number with 7-9 and remaing 9 digit with 0-9">
+                                </div>                           
+                                <div class="form-group">
+                                  <label for="inputAddress">Address</label>
+                                  <input type="text" class="form-control" name="add" id="inputAddress" placeholder="Address">
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="inputCity">City</label>
+                                    <input type="text" name="city" class="form-control" id="inputCity" placeholder="City">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="inputCity">State</label>
+                                    <input type="text" name="state" class="form-control" id="inputState" placeholder="State">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="inputZip">Area Code</label>
+                                    <input type="text" minlength="6" maxlength="6" pattern="[0-9]{6}" name="zip" class="form-control" id="inputZip" placeholder="Areacode / Pincode" title="Area Code with 6 digit with 0-9">
+                                  </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success mt-3 mb-5" id="checkout">Checkout</button>
+                        {% endif %}
+                      </div>
+                    </form>
+                </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    {% endif %}
+      
+{% endblock %}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title> AAS | 
+      {% with request.get_full_path|slice:"1:4" as path %}
+        {% if path == '' %}Home
+        {% elif path == 'pro' %} Products
+        {% else %} Security  
+        {%endif%}
+      {% endwith %}      
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    {% load static %}
+    
+    <!-- Favicons -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>  
+    <link rel="apple-touch-icon" sizes="180x180" href="{%static 'images/favicon/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{%static 'images/favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{%static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{%static 'images/favicon/site.webmanifest'%}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{%static 'css/custom.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/owl-carousel/css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/owl-carousel/css/owl.theme.default.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/mdi/css/materialdesignicons.min.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/aos/css/aos.css'%}">
+    <link rel="stylesheet" href="{%static 'css/style.min.css'%}">
+
+    <!-- Alert HTML - Update Profile -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show my-0 text-center" role="alert" id="popup">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <style>
+      input[type = "text"]{
+        text-transform: capitalize;
+      }
+      input[type = "email"]{
+        text-transform: lowercase;
+      }
+    </style>    
+
+  </head>
+
+  <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
+    <!-- Body -->
+    {% block body %}{% endblock %}
+  
+    <!-- Signin Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <center>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="loginModalLabel">Sign In</h4>
+          </div>
+          <div class="modal-body text-left">
+            <form method="post">{% csrf_token %}
+              <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" name="email" class="form-control" id="Email" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" name="password" class="form-control" id="Password" placeholder="Password">
+              </div>
+              {% comment %} <a class="text-muted small" href="/Check-User/">forgot password?</a> {% endcomment %}
+              <div class="modal-footer pb-4 p-0 m-0">
+                <button type="submit" class="btn btn-dark">Sign In</button>
+                <button type="submit" class="btn btn-light" data-dismiss="modal">Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </center>
+      </div>
+    </div>
+
+    <script type="text/javascript"> 
+      setTimeout(function () { 
+          $('#popup').alert('close'); 
+      }, 4000); 
+    </script>  
+    <!-- JS Files -->
+    <script src="{%static 'vendors/jquery/jquery.min.js'%}"></script>
+    <script src="{%static 'vendors/bootstrap/bootstrap.min.js'%}"></script>
+    <script src="{%static 'vendors/owl-carousel/js/owl.carousel.min.js'%}"></script>
+    <script src="{%static 'vendors/aos/js/aos.js'%}"></script>
+    <script src="{%static 'js/landingpage.js'%}"></script>
+  </body>
+
+</html>
+
+<!--URL based Navigation-->
+{% comment %} {% with request.path|slice:":5" as path %}
+    {% if path == '/Admi' %} 
+        {% set tabs = { 'tab1': {'name': 'Alerts', 'url': '/Admin-Alerts/'} ,'tab2': {'name': 'ECC', 'url': '/Admin-ECCs/'}, 'tab3': {'name': 'Customer', 'url': '/Admin-Customers/'}, } %}
+    {% elif path == '/ECC-' %} 
+        {% set tabs = { 'tab1': {'name': 'Alerts', 'url': '/ECC-Alerts/'} , 'tab2': {'name': 'Profile', 'url': '/ECC-Profile/'}, } %}      
+    {% elif path == '/Cust' %}   
+        {% set tabs = { 'tab1': {'name': 'Alerts', 'url': '/Cust-Alerts/'} ,'tab2': {'name': 'Profile', 'url': '/Cust-Profile/'}, } %}    
+        {% for key, value in tabs.items %}
+            <li class="nav-item">
+            <a class="nav-link" href={{value.url}}>{{value.name}} <span class="sr-only"></span></a>
+            </li>                    
+        {% endfor %}    
+    {%endif%}
+{% endwith %} {% endcomment %}

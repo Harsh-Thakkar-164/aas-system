@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <title> AAS | Error
+          </title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+          {% load static %}
+          <!-- Favicons -->
+          <link rel="apple-touch-icon" sizes="180x180" href="{%static 'images/favicon/apple-touch-icon.png'%}">
+          <link rel="icon" type="image/png" sizes="32x32" href="{%static 'images/favicon/favicon-32x32.png'%}">
+          <link rel="icon" type="image/png" sizes="16x16" href="{%static 'images/favicon/favicon-16x16.png'%}">
+          <link rel="manifest" href="{%static 'images/favicon/site.webmanifest'%}">
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+            *{
+              font-family: 'Poppins', sans-serif;  
+              color:#ff0000;
+            }
+            #notfound {
+                position: relative;
+                height: 100vh;
+              }
+              
+              #notfound .notfound {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+              }
+              
+              .notfound {
+                max-width: 767px;
+                width: 100%;
+                line-height: 1.4;
+                text-align: center;
+                padding: 15px;
+              }
+              
+              .notfound .notfound-404 {
+                position: relative;
+                height: 220px;
+              }
+              
+              .notfound .notfound-404 h1 {
+                /* font-family: 'Kanit', sans-serif; */
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+                font-size: 186px;
+                font-weight: 200;
+                margin: 0px;
+                /* background: linear-gradient(130deg, #ffa34f, #ff6f68); */
+                color:#ff0000;
+                -webkit-background-clip: text;
+                background-clip: text;
+                text-transform: uppercase;
+              }
+              
+              .notfound h1 {
+                font-size: 45px;
+                font-weight: 200;
+                text-transform: uppercase;
+                margin-top: 0px;
+                margin-bottom: 25px;
+                letter-spacing: 3px;
+              }
+              @media only screen and (max-width: 480px) {
+                .notfound .notfound-404 {
+                  position: relative;
+                  height: 168px;
+                }
+              
+                .notfound .notfound-404 h1 {
+                  font-size: 142px;
+                }
+              
+                .notfound h1 {
+                  font-size: 22px;
+                }
+              }
+            
+              .error-body{
+                font-size: 30px;
+                color:black;
+              }                
+        </style>
+        </head>
+    <body>
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1><b>404</b></h1>    
+            </h1>
+			</div>
+			<h1><b>Page Not Found</b></h1>
+            <div class="error-body">The page you're looking for was not found</div>
+    	</div>
+	</div>
+    </body>
+</html>

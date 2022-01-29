@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title> AAS | 
+      {% with request.path|slice:"1:4" as path %}
+        {% if path == 'sup' %}Admin
+        {% elif path == 'ecc' %} ECC
+        {% elif path == 'cus' %} Customer  
+        {%endif%}
+      {% endwith %}      
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    {% load static %}
+    {% load webpush_notifications %}
+    
+    <!-- Favicons -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>  
+    <link rel="apple-touch-icon" sizes="180x180" href="{%static 'images/favicon/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{%static 'images/favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{%static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{%static 'images/favicon/site.webmanifest'%}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    {% webpush_header %}
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{%static 'css/custom.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/owl-carousel/css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/owl-carousel/css/owl.theme.default.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/mdi/css/materialdesignicons.min.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/aos/css/aos.css'%}">
+    <link rel="stylesheet" href="{%static 'css/style.min.css'%}">
+
+    <!-- Alert HTML - Update Profile -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show my-0 text-center" role="alert" id="popup">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <style>
+      input[type = "text"]{
+        text-transform: capitalize;
+      }
+      input[type = "email"]{
+        text-transform: lowercase;
+      }
+    </style>
+  </head>
+
+  <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
+    <!-- Header -->
+    <header id="header-section">
+      <nav class="navbar navbar-expand-lg p-3" id="navbar">
+      <div class="container rounded border border-dark">
+      <div class="navbar-brand-wrapper w-100 container-header-main">
+          <div class="vertical-align d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-between px-2">
+              <img src="{%static 'images/logo/aas-logo.png'%}" alt="" width="70px" class="img-fluid pl-3">
+              <span class="w-60 h5 d-flex align-items-center pt-1" style="color: #3D3B40;">Accident <span style="color: #F74D6A;margin:0px 5px">Alert</span> Securities</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="mdi mdi-menu navbar-toggler-icon mr-auto"></span>
+            </button> 
+          </div>
+      </div>
+      <div class="collapse navbar-collapse navbar-menu-wrapper" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
+          <li class="d-flex align-items-center justify-content-between ">
+              <div class="navbar-collapse-logo col-10">
+                {% comment %} <img src="{%static 'images/logo/aas-logo.png'%}" alt="" width="60px" class="img-fluid"> {% endcomment %}
+                <span class="w-60 pl-1 text-dark h4 header-main-text">A <span class="text-danger">A</span> S</span>
+              </div>
+              <button class="navbar-toggler close-button col-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
+              </button>
+          </li>
+              {% with request.path|slice:"1:4" as path %}
+                {% if path == 'sup' %} 
+                  <li class="nav-item">
+                    <a class="nav-link" href="/super_admin/alerts/">Alerts</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/super_admin/eccs/">ECCs</a>  
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/super_admin/customers/">Customers</a>  
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/super_admin/products/">Products</a> 
+                  </li>
+                {% elif path == 'ecc' %} 
+                  <li class="nav-item">
+                    <a class="nav-link" href='/ecc/alerts/'>Alerts</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/ecc/my_profile/">Profile</a>  
+                  </li>
+                {% elif path == 'cus' %}   
+                  <li class="nav-item">
+                    <a class="nav-link" href='/customer/alerts/'>Alerts</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/customer/my_profile/">Profile</a>  
+                  </li>
+                {%endif%}
+              {% endwith %}
+              <li class="nav-item btn-contact-us pl-4 pl-lg-0">
+                <a href="/signout/"><button class="btn btn-dark">Sign Out</button></a>
+              </li>
+            </ul>
+          </div>
+        </div> 
+      </nav>   
+    </header>
+
+    <!-- Body Heading -->
+    <div class="banner mb-5">
+      <div class="container p-0">
+          <h3 class="font-weight-normal text-dark border-bottom pb-3">{% block body_heading %}{% endblock %}</h3>
+      </div>
+    </div>
+    
+    <!-- Body -->
+    <div class="container">
+      {% block body %}{% endblock %}
+    </div>
+
+    <!-- Alert Script - Update Profile -->
+    <script type="text/javascript"> 
+      setTimeout(function () { 
+          // Closing the alert 
+          $('#popup').alert('close'); 
+      }, 4000); 
+    </script>  
+
+    <!-- JS Files -->
+    <script src="{%static 'vendors/jquery/jquery.min.js'%}"></script>
+    <script src="{%static 'vendors/bootstrap/bootstrap.min.js'%}"></script>
+    <script src="{%static 'vendors/owl-carousel/js/owl.carousel.min.js'%}"></script>
+    <script src="{%static 'vendors/aos/js/aos.js'%}"></script>
+    <script src="{%static 'js/landingpage.js'%}"></script>
+  </body>
+
+</html>
+
+<!--URL based Navigation-->
+{% comment %} {% with request.path|slice:":5" as path %}
+    {% if path == '/Admi' %} 
+        {% set tabs = { 'tab1': {'name': 'Alerts', 'url': '/Admin-Alerts/'} ,'tab2': {'name': 'ECC', 'url': '/Admin-ECCs/'}, 'tab3': {'name': 'Customer', 'url': '/Admin-Customers/'}, } %}
+    {% elif path == '/ECC-' %} 
+        {% set tabs = { 'tab1': {'name': 'Alerts', 'url': '/ECC-Alerts/'} , 'tab2': {'name': 'Profile', 'url': '/ECC-Profile/'}, } %}      
+    {% elif path == '/Cust' %}   
+        {% set tabs = { 'tab1': {'name': 'Alerts', 'url': '/Cust-Alerts/'} ,'tab2': {'name': 'Profile', 'url': '/Cust-Profile/'}, } %}    
+        {% for key, value in tabs.items %}
+            <li class="nav-item">
+            <a class="nav-link" href={{value.url}}>{{value.name}} <span class="sr-only"></span></a>
+            </li>                    
+        {% endfor %}    
+    {%endif%}
+{% endwith %} {% endcomment %}

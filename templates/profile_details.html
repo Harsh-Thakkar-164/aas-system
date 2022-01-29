@@ -1,0 +1,176 @@
+{% extends 'dashboard-master.html' %}
+
+{% block body_heading %}
+      {% if request.path == '/super_admin/customer/' or request.path == "/customer/my_profile/" %}
+        Customer Profile
+      {% elif request.path == '/super_admin/ecc/' or request.path == '/ecc/my_profile/' %}
+        ECC Profile
+      {%elif request.path == '/super_admin/add_ecc/'%}
+        ECC Registration
+    {%endif%}
+{% endblock %}
+
+{% block body %}
+    {% load static %}
+    <div class="row align-items-center justify-content-center">
+      <div class="col-12 col-lg-8 flex-item grid-margin border py-3 px-5">
+          <form method="post">{%  csrf_token %}
+            {% if request.path == '/super_admin/customer/' or request.path == "/customer/my_profile/" or request.path == '/super_admin/product/' %}
+              {% with request.path|slice:"1:4" as path %}
+                <div>
+                  {% for data in customer_details %}
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
+                        <label for="inputEmail4">First Name</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{data.firstName}}" disabled= "disabled">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputPassword4">Last Name</label>
+                        <input type="text" class="form-control" id="inputPassword4" value="{{data.lastName}}" disabled= "disabled">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputEmail4">Gender</label>
+                        <input type="text" class="form-control" id="inputPassword4" value="{{data.gender}}" disabled="disabled">     
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputPassword4">Blood</label>
+                        <input type="text" class="form-control" id="inputPassword4" value="{{data.bloodGroup}}"  disabled= "disabled">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputEmail4">Birthdate</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{data.birthDate}}"  disabled= "disabled">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputAddress">Mobile</label>
+                        <input type="text" pattern="[6-9]{1}[0-9]{9}" minlength="10" maxlength="10" class="form-control" value="{{data.contact}}" id="inputMobile" name="mobile" {% if request.path != "/customer/my_profile/" %} disabled="disabled" {% endif %}>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputAddress">Email</label>
+                        <input type="email" class="form-control" value="{{data.uid}}" id="inputMobile" name="email" {% if request.path != "/customer/my_profile/" %} disabled="disabled" {% endif %}>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="inputAddress" value="{{data.address}}" name="address" {% if request.path != "/customer/my_profile/" %} disabled="disabled" {% endif %}>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" value="{{data.city}}" id="inputCity" name="city" {% if request.path != "/customer/my_profile/" %} disabled="disabled" {% endif %}>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputCity">State</label>
+                        <input type="text" class="form-control" value="{{data.state}}" id="inputState" name="state" {% if request.path != "/customer/my_profile/" %} disabled="disabled" {% endif %}>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputZip">Area Code</label>
+                        <input type="number" minlength="6" maxlength="6" class="form-control" value="{{data.pincode}}" id="inputZip" name="pincode" {% if request.path != "/customer/my_profile/" %} disabled="disabled" {% endif %}>
+                      </div>
+                    </div>
+                    <div class="form-row"> 
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Vehicle Number</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{data.vehicleNumber}}" disabled= "disabled">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Vehicle Model</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{data.vehicleModel}}" disabled= "disabled">
+                      </div>
+                    </div>
+                    <div class="form-row"> 
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Product Number</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{product.modelNumber}}" disabled= "disabled">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Allocation Time</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{product.allocationTime}}" disabled= "disabled">
+                      </div>
+                    </div>
+                    <input type="hidden" name="old_mobile" value="{{data.contact}}">
+                    <input type="hidden" name="old_email" value="{{data.uid}}">
+                    <input type="hidden" name="old_address" value="{{data.address}}">
+                    <input type="hidden" name="old_city" value="{{data.city}}">
+                    <input type="hidden" name="old_state" value="{{data.state}}">
+                    <input type="hidden" name="old_pincode" value="{{data.pincode}}">
+                    {% if path == "cus" %}<button type="submit" class="btn btn-success ml-2">Update</button>
+                    {% elif path == "sup" %}<a class ="btn btn-dark mr-2" href="/super_admin/customer_alerts/?id={{data.cid}}">Records</a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endwith %}
+            {% elif request.path == '/super_admin/ecc/' or request.path == "/ecc/my_profile/" or request.path == "/customer/ecc/"%}
+                {% with request.path|slice:"1:4" as path %}
+                  <div>
+                    {% for data in ecc_details %}
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputPassword4">Name</label>
+                            <input type="text" class="form-control" value="{{data.name}}" id="inputPassword4" placeholder="ECC Name" disabled="disabled">
+                        </div>
+                        <div class="form-group col-md-12">
+                              <label for="inputPassword4">State</label>
+                              <input type="text" class="form-control" value="{{data.state}}" id="inputState" placeholder="ECC State" disabled="disabled">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="inputPassword4">Mobile</label>
+                            <input type="tel"  minlength="10" maxlength="10" class="form-control" name="contact" value="{{data.contact}}" id="inputPassword4" placeholder="ECC Contact Number" {% if path != "ecc" %} disabled="disabled" {% endif %}>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="inputPassword4">Email</label>
+                            <input type="email" class="form-control" name="email" value="{{data.uid}}" id="inputEmail4" placeholder="ECC Email" {% if path != "ecc" %} disabled="disabled" {% endif %}>
+                        </div>
+                        <input type="hidden" name="old_contact" value="{{data.contact}}">
+                        <input type="hidden" name="old_email" value="{{data.uid}}">
+                        {% if path == "ecc" %}
+                        <button class="btn btn-success mt-4">Update</button>
+                        {% elif path == "sup" %}
+                        <a class ="btn btn-dark" href="/super_admin/ecc_alerts/?id={{data.eid}}">Records</a>
+                        <button type="submit" class="btn btn-danger ml-3">Delete</button>                  
+                        {% endif %}
+                      </div>
+                      {% endfor %}
+                  </div> 
+                {% endwith %}                
+
+            {% elif request.path == '/super_admin/add_ecc/' %}
+                <div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Name</label>
+                        <input type="text" name="ecc_name" class="form-control" id="inputPassword4" placeholder="ECC Name">
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="inputPassword4">State</label>
+                      <input type="text" name="ecc_state" class="form-control" id="inputState" placeholder="ECC State">
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="inputPassword4">Contact</label>
+                      <input type="text" pattern="[6-9]{1}[0-9]{9}" minlength="10" maxlength="10" name="ecc_contact" class="form-control" id="inputPassword4" placeholder="ECC Contact Number" title="Phone number with 7-9 and remaing 9 digit with 0-9">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Email</label>
+                        <input type="Email" name="ecc_email" class="form-control" id="inputEmail4" placeholder="ECC Email">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Password</label>
+                        <input type="Password" name="ecc_password" class="form-control" id="inputPassword4" placeholder="ECC Password">
+                    </div>
+                    <button type="submit" class="btn btn-success mt-2">Register</button>
+                  </div>
+                </div>
+
+              {% elif request.path == '/super_admin/add_product/' %}
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Products Count <span class="text-muted">(Min. 10)</span></label>
+                        <input type="number" name="add_product" class="form-control"  placeholder="Products Count You Want To Add" min="10" required />
+                    </div>
+                      <button type="submit" class="btn btn-success mt-2">Add</button>
+                  </div>
+            {%endif%}
+          </form>
+      </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'dashboard-master.html' %}
+
+{% block body_heading %}
+    {%if request.path == '/super_admin/customers/'%}
+        Customers
+    {%elif request.path == '/super_admin/eccs/'%}
+        ECCs
+        <div class = "d-flex justify-content-center">
+            <a href="/super_admin/add_ecc/"><button class="btn btn-success">New ECC</button></a> 
+        </div>  
+    {%elif request.path == '/super_admin/products/'%}
+        Products
+        <div class = "d-flex justify-content-center">
+            <a href="/super_admin/add_product/"><button class="btn btn-success">Add Products</button></a>
+        </div>  
+    {%endif%}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+    <center>
+
+        {%if request.path == '/super_admin/customers/'%}
+        <div class="">
+            {% for customer  in customers %}
+            <div class="row col-lg-6 col-sm-6 col-12">
+                <a href="/super_admin/customer/?id={{customer.cid}}" class="col-12 alert alert-info text-dark text-center">
+                    <b>{{ customer.firstName }} {{ customer.lastName }}</b>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        {%elif request.path == '/super_admin/products/'%}
+            <div class="">
+                <div class ="container d-flex justify-content-center pb-2">
+                    <div class ="row">
+                        <div class = "col-xl-4 col-sm-4 col-4">
+                            <h5 class="btn alert-info px-4">Allocated<br><b>{{allocate_product}}</b></h5>
+                        </div>
+                        <div class = "col-xl-4 col-sm-4 col-4">
+                           <h5 class="btn alert-dark text-dark">Unallocated<br><b>{{notallocat_product}}</b></h5>
+                       </div>
+                        <div class = "col-xl-4 col-sm-4 col-4">
+                            <h5 class="btn alert-light px-5">Total<br><b>{{total_product}}</b></h5>
+                        </div>
+                    </div>
+                </div>
+                    {% for prod  in product %}
+                        <div class="row col-lg-6 col-sm-6 col-12">
+                        <a href="/super_admin/product/?id={{prod.pid}}" class="col-12 alert{%if prod.cid == "" %} alert-dark disabled{%else%} alert-info text-dark {%endif%}">
+                                <b>{{prod.modelNumber}}</b>
+                            </a>
+                        </div>
+                    {% endfor %}
+            </div>
+
+        {%elif request.path == '/super_admin/eccs/'%}
+            <div class="">
+                {% for ecc in eccs %}
+                <div class="row col-lg-6 col-sm-6 col-12">
+                    <a href="/super_admin/ecc/?id={{ecc.eid}}" class="col-12 alert alert-info text-dark text-center">
+                        <b>{{ ecc.name }}</b>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {%endif%}
+    </center>
+        <style>
+            a.disabled {
+                pointer-events: none;
+                cursor: default;
+              }
+            </style>
+
+{%  endblock %}
