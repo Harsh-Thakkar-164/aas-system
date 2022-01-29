@@ -51,6 +51,8 @@ ROOT_URLCONF = 'main_aas.urls'
 
 AUTH_USER_MODEL = 'app_accounts.UserMaster'
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -116,8 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_ROOT = "/var/www/aas-system.herokuapp.com/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
