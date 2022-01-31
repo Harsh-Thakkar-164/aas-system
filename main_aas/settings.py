@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "d+-z=5rj97w4i+m8w$=tatwji%_q^6k@be@0a#qdpj^km*jrjq"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['aas-system.herokuapp.com']
 
 DEBUG = False
 # Application definition
@@ -135,4 +135,4 @@ WEBPUSH_SETTINGS = {
    "VAPID_ADMIN_EMAIL": 'accidentsecurities@gmail.com'
 }
 
-django_heroku.settings(locals())
+django_heroku.settings(locals())    
