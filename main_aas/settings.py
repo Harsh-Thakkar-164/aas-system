@@ -134,4 +134,5 @@ WEBPUSH_SETTINGS = {
    "VAPID_PRIVATE_KEY": 'PQV1uacR8tffrzRg8L6miSLGIUiFSD8Chg7WSwx5LN0',
    "VAPID_ADMIN_EMAIL": 'accidentsecurities@gmail.com'
 }
+
 django_heroku.settings(locals())
