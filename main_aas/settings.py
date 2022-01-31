@@ -13,7 +13,7 @@ SECRET_KEY = 'd+-z=5rj97w4i+m8w$=tatwji%_q^6k@be@0a#qdpj^km*jrjq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.100']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.100','aas-system.herokuapp.com']
 
 DEBUG = True
 # Application definition
