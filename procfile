@@ -1,1 +1,1 @@
-web: gunicorn aas-system.wsgi
+web: gunicorn CCMS.wsgi --log-file -
