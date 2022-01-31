@@ -8,12 +8,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "d+-z=5rj97w4i+m8w$=tatwji%_q^6k@be@0a#qdpj^km*jrjq"
+SECRET_KEY = 'd+-z=5rj97w4i+m8w$=tatwji%_q^6k@be@0a#qdpj^km*jrjq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = ['aas-system.herokuapp.com']
-
 DEBUG = False
+
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.100']
+
+DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -95,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -115,12 +116,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -132,7 +132,7 @@ EMAIL_HOST_PASSWORD = 'AccidentSecurities@PS'
 WEBPUSH_SETTINGS = {
    "VAPID_PUBLIC_KEY": 'BIPWxxiBkBE3u9EXPxL_YX_Ln8DWuAT4fWI7v0Kvg5gcznjCZrwSC3xqB29TiS-gQk-muugnCZCSftwZOfFBx60',
    "VAPID_PRIVATE_KEY": 'PQV1uacR8tffrzRg8L6miSLGIUiFSD8Chg7WSwx5LN0',
-   "VAPID_ADMIN_EMAIL": 'accidentsecurities@gmail.com'
+   "VAPID_ADMIN_EMAIL":'accidentsecurities@gmail.com'
 }
 
-django_heroku.settings(locals())    
+django_heroku.settings(locals())
