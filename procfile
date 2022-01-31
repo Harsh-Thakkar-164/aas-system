@@ -1,1 +1,1 @@
-web:gunicorn main_aas.wsgi
+web: gunicorn main_aas.wsgi
