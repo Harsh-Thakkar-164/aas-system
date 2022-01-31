@@ -9,11 +9,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = "d+-z=5rj97w4i+m8w$=tatwji%_q^6k@be@0a#qdpj^km*jrjq"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
-
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.100']
 
 DEBUG = True
@@ -72,9 +70,9 @@ WSGI_APPLICATION = 'main_aas.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
-            'NAME': config('DB_NAME'),
+            'NAME': 'db_aas',
             'CLIENT': {
-                'host': config('DB_HOST')
+                'host': 'mongodb+srv://neelpatel:neel@clusteraas.lfdgn.mongodb.net/db_aas?retryWrites=true&w=majority'
             }  
         }
 }
@@ -129,11 +127,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') 
+EMAIL_HOST_USER = 'accidentsecurities@gmail.com'
+EMAIL_HOST_PASSWORD = 'AccidentSecurities@PS'
 
 WEBPUSH_SETTINGS = {
-   "VAPID_PUBLIC_KEY": config('VAPID_PUBLIC_KEY'),
-   "VAPID_PRIVATE_KEY": config('VAPID_PRIVATE_KEY'),
-   "VAPID_ADMIN_EMAIL": config('VAPID_ADMIN_EMAIL')
+   "VAPID_PUBLIC_KEY": 'BIPWxxiBkBE3u9EXPxL_YX_Ln8DWuAT4fWI7v0Kvg5gcznjCZrwSC3xqB29TiS-gQk-muugnCZCSftwZOfFBx60',
+   "VAPID_PRIVATE_KEY": 'PQV1uacR8tffrzRg8L6miSLGIUiFSD8Chg7WSwx5LN0',
+   "VAPID_ADMIN_EMAIL": 'accidentsecurities@gmail.com'
 }
