@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "d+-z=5rj97w4i+m8w$=tatwji%_q^6k@be@0a#qdpj^km*jrjq"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.100','aas-system.com']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.100','aas-system.herokuapp.com']
 
 DEBUG = False
 # Application definition
@@ -115,8 +115,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT =  '/static'
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
