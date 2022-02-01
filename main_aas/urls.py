@@ -17,5 +17,6 @@ urlpatterns = [
     path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
     path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
+
 handler404 = "main_aas.views.notfound404"
 handler500 = "main_aas.views.notfound500"
