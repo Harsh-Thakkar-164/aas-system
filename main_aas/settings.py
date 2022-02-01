@@ -123,12 +123,11 @@ STATICFILES_DIRS = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'accidentsecurities@gmail.com'
 EMAIL_HOST_PASSWORD = 'AccidentSecurities@PS'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'thakkarharsh2110@gmail.com'
 
 WEBPUSH_SETTINGS = {
    "VAPID_PUBLIC_KEY": 'BIPWxxiBkBE3u9EXPxL_YX_Ln8DWuAT4fWI7v0Kvg5gcznjCZrwSC3xqB29TiS-gQk-muugnCZCSftwZOfFBx60',
