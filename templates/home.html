@@ -47,11 +47,11 @@
                 {% if lguser == none  and request.path != '/products/'%}
                   <li class="nav-item btn-contact-us pl-4 pl-lg-0">
                     <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">Sign In</button>
-                    {% elif lguser ==  "customer" %}
-                    <a class="btn btn-danger" href="/super_admin/alerts/">Dashboard</a>
                     {% elif lguser ==  "super" %}
-                    <a class="btn btn-danger" href="/ecc/alerts/">Dashboard</a>
+                    <a class="btn btn-danger" href="/super_admin/alerts/">Dashboard</a>
                     {% elif lguser ==  "ecc" %}
+                    <a class="btn btn-danger" href="/ecc/alerts/">Dashboard</a>
+                    {% elif lguser ==  "customer" %}
                     <a class="btn btn-danger" href="/customer/alerts/">Dashboard</a>
                   </li>
                 {% endif%}
