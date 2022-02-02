@@ -58,8 +58,6 @@ def registrationPhase2(request):
         if request.method == "POST":
             fname = request.POST.get('fname').capitalize()
             lname = request.POST.get('lname').capitalize()
-                
-            print(fname, uid)
             if fname and uid:
                     mo = request.POST.get('mob')
                     birthdate = request.POST.get('birthdate')
@@ -77,6 +75,7 @@ def registrationPhase2(request):
 
                     ProductName = Product.objects.filter(cid=cid).values_list('modelNumber')[0][0]
                     email = UserMaster.objects.filter(uid=uid).values_list('email')[0][0]
+
                     print(email)
                     # Sending Mail
                     subject = "Device Purchase"
@@ -122,6 +121,7 @@ def confirmProduct(request):
             device = Product.objects.filter(modelNumber= confirmDevice, allocationTime=None)
             print(confirmDevice)
             if device:
+                print(device)
                 device.update(allocationTime=datetime.now())
                 user.set_password(newPassword)
                 user.save()
