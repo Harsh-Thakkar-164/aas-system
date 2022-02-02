@@ -127,7 +127,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'accidentsecurities@gmail.com'
-EMAIL_HOST_PASSWORD = 'AccidentSecurities@PS'
+EMAIL_HOST_PASSWORD = 'jaackrewahiltxoe'
 
 WEBPUSH_SETTINGS = {
    "VAPID_PUBLIC_KEY": 'BIPWxxiBkBE3u9EXPxL_YX_Ln8DWuAT4fWI7v0Kvg5gcznjCZrwSC3xqB29TiS-gQk-muugnCZCSftwZOfFBx60',
